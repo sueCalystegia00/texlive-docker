@@ -1,0 +1,1 @@
+latexdiff-vc -e utf8 -t CFONT --git --flatten --force --append-safecmd -r $1 $2

@@ -1,8 +1,11 @@
-version: "3"
+version: "3.2"
 services:
   ubuntu-texlive-ja:
-    image: korosuke613/ubuntu-texlive-ja-devcontainer
-    #build: .
+    container_name: texlive-ja
+    #image: korosuke613/ubuntu-texlive-ja-devcontainer
+    build: 
+      context: .
+      dockerfile: Dockerfile
     command: sleep infinity
     volumes:
       - ../:/workdir

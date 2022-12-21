@@ -1,9 +1,14 @@
+# .devcontainer/
+# .vscode/
+# .bin/
+
 *.aux
 *.dvi
 *.fdb_latexmk
 *.fls
 *.synctex.gz
 *.log
-*.pdf
+
+out/
 
 .DS_Store
