@@ -68,34 +68,22 @@
 			"args": ["%DOCFILE%", "-kanji=utf8"]
 		},
     {
-      "name": "latexdiff-vc",
-      "command": "latexdiff-vc",
+      "name": "latexdiff-vc(HEAD)",
+      "command": "sh",
       "args": [
-        "-e",
-        "utf8",
-        "-t",
-        "CFONT",
-        "--git",
-        "--flatten",
-        "--force",
-        "--append-safecmd",
-        "-r",
-        "HEAD", // ←直前のコミットとの差分を見る
+        "/workdir/.bin/latexdiff-commit.sh",
+        "HEAD",
         "%DOCFILE%.tex"
       ]
     },
     {
-      "name": "ptex(diff)2pdf",
-    	 "command": "ptex2pdf",
-    	 "args": [
-    	   "-l",
-    	   "-ot",
-    	   "-kanji=utf8 -synctex=1",
-    	   "-output-directory",
-    	   "%OUTDIR%",
-    	   "%DOC%-diffHEAD"
+      "name": "latexdiff-vc(lastTag)",
+      "command": "sh",
+      "args": [
+        "/workdir/.bin/latexdiff-lastTag.sh",
+        "%DOCFILE%.tex"
       ]
-    }
+    },
 	],
   //"latex-workshop.latex.recipe.default": "lastUsed",
 	"latex-workshop.latex.recipes": [
@@ -116,8 +104,12 @@
 			]
 		},
     {
-      "name": "mkDiffHEAD-pt2p-pt2p",
-    	 "tools": ["latexdiff-vc", "ptex(diff)2pdf", "ptex(diff)2pdf"]
+      "name": "mkDiffHEAD",
+    	 "tools": ["latexdiff-vc(HEAD)"]
+    },
+    {
+      "name": "mkDiffTAG",
+    	 "tools": ["latexdiff-vc(lastTag)"]
     }
 	],
 
