@@ -84,12 +84,21 @@
         "%DOCFILE%.tex"
       ]
     },
+    {
+			"name": "replace-latexdiff-def",
+			"command": "sh",
+			"args": [
+				"/workdir/.bin/replace-latexdiff-def.sh",
+				"%DOCFILE%.tex"
+			]
+		}
 	],
   //"latex-workshop.latex.recipe.default": "lastUsed",
 	"latex-workshop.latex.recipes": [
 		{
 			"name": "pt2p-pt2p",
 			"tools": [
+        "replace-latexdiff-def", //latexdiffの定義を置き換える．単純なコンパイルのためなら本来は不要．
 				"ptex2pdf", //タイプセットに使うtoolの名前
 				"ptex2pdf"
 			]
@@ -105,11 +114,11 @@
 		},
     {
       "name": "mkDiffHEAD",
-    	 "tools": ["latexdiff-vc(HEAD)"]
+      "tools": ["latexdiff-vc(HEAD)"]
     },
     {
       "name": "mkDiffTAG",
-    	 "tools": ["latexdiff-vc(lastTag)"]
+      "tools": ["latexdiff-vc(lastTag)"]
     }
 	],
 
