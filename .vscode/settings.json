@@ -50,12 +50,12 @@
 		{
       "name": "ptex2pdf",
 			"command": "ptex2pdf",
-			"args": ["-l", "-ot", "-kanji=utf8 -synctex=1", "-halt-on-error", "-file-line-error", "-output-directory", "%OUTDIR%", "%DOC%"]
+			"args": ["-l", "-ot", "-kanji=utf8 -synctex=1", "-interaction=nonstopmode", "-halt-on-error", "-file-line-error", "-output-directory", "%OUTDIR%", "%DOC%"]
 		},
 		{
 			"name": "ptex2pdf (uplatex)",
 			"command": "ptex2pdf",
-			"args": ["-l", "-u", "-ot", "-kanji=utf8 -synctex=1", "-halt-on-error", "-file-line-error", "-output-directory", "%OUTDIR%", "%DOC%"]
+			"args": ["-l", "-u", "-ot", "-kanji=utf8 -synctex=1", "-interaction=nonstopmode", "-halt-on-error", "-file-line-error", "-output-directory", "%OUTDIR%", "%DOC%"]
 		},
 		{
 			"name": "bibtex",
@@ -73,7 +73,7 @@
       "args": [
         "/workdir/.bin/latexdiff-commit.sh",
         "HEAD",
-        "%DOCFILE%.tex"
+        "%DOCFILE%"
       ]
     },
     {
@@ -81,7 +81,7 @@
       "command": "sh",
       "args": [
         "/workdir/.bin/latexdiff-lastTag.sh",
-        "%DOCFILE%.tex"
+        "%DOCFILE%"
       ]
     },
     {
@@ -98,7 +98,6 @@
 		{
 			"name": "pt2p-pt2p",
 			"tools": [
-        "replace-latexdiff-def", //latexdiffの定義を置き換える．単純なコンパイルのためなら本来は不要．
 				"ptex2pdf", //タイプセットに使うtoolの名前
 				"ptex2pdf"
 			]
@@ -114,11 +113,17 @@
 		},
     {
       "name": "mkDiffHEAD",
-      "tools": ["latexdiff-vc(HEAD)"]
+      "tools": [
+        "latexdiff-vc(HEAD)", 
+        "replace-latexdiff-def", //latexdiffの定義を置き換える．単純なコンパイルのためなら本来は不要．
+      ]
     },
     {
       "name": "mkDiffTAG",
-      "tools": ["latexdiff-vc(lastTag)"]
+      "tools": [
+        "latexdiff-vc(lastTag)",
+        "replace-latexdiff-def", //latexdiffの定義を置き換える．単純なコンパイルのためなら本来は不要．
+      ]
     }
 	],
 
